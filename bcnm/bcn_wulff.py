@@ -105,6 +105,15 @@ def compare(sprint0,sprint1):
 if __name__ == "__main__":
     xyz = sys.argv[1]
     
-    f = open('test2', 'w', encoding="utf-8")
-    f.write(f'{xyz}, {sprint(xyz)}\n')
-    f.close()
+    # list of sprint coordinates to be calculated
+    f = open('list_sprints.txt', 'a', encoding="utf-8")
+    
+    # list of .xyz files that will be opened to run sprint()
+    # function
+    with open('list_xyz.txt') as listmol:
+        for line in listmol:
+            line = line.splitlines()[0]
+
+            f.write(f'{line}, {sprint(line)}\n')
+            
+        f.close()
