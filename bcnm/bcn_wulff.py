@@ -1,4 +1,7 @@
 from __future__ import print_function
+import io
+import sys
+
 import numpy as np
 import pandas as pd
 
@@ -11,7 +14,7 @@ from ase.neighborlist import NeighborList
 from ase.io import write,read
 
 
-def sprint(nano):
+def sprint(xyz_file):
     """
     Function that calculates the sprint coordinates matrix for a nanoparticle.
 
@@ -29,9 +32,9 @@ def sprint(nano):
     Return:
         sFormated([float]): SPRINT coordinates
     """
-    atoms=read(nano,format='xyz')
+    atoms=read(xyz_file,format='xyz')
     atoms.center(vacuum=20)
-    adjacencyName=nano+'dat'
+    adjacencyName=xyz_file+'dat'
 
     nearest_neighbour=[]
     C=[]
@@ -98,3 +101,10 @@ def compare(sprint0,sprint1):
         diff=(list(set(sprint0) - set(sprint1)))
         if len(diff)==0:
             return True
+
+if __name__ == "__main__":
+    xyz = sys.argv[1]
+    
+    f = open('test2', 'w', encoding="utf-8")
+    f.write(f'{xyz}, {sprint(xyz)}\n')
+    f.close()
