@@ -110,7 +110,7 @@ if __name__ == "__main__":
     
     # list of .xyz files that will be opened to run sprint()
     # function
-    with open('list_xyz.txt') as listmol:
+    with open(xyz) as listmol:
         for line in listmol:
             line = line.splitlines()[0]
 
