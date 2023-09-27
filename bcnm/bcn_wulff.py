@@ -32,7 +32,11 @@ def sprint(xyz_file):
     Return:
         sFormated([float]): SPRINT coordinates
     """
-    atoms=read(xyz_file,format='xyz')
+    try:
+         atoms=read(xyz_file,format='xyz')
+    except ValueError:
+         print (f'There should be an Error in {xyz_file}\n')
+
     atoms.center(vacuum=20)
     adjacencyName=xyz_file+'dat'
 
@@ -106,7 +110,7 @@ if __name__ == "__main__":
     xyz = sys.argv[1]
     
     # list of sprint coordinates to be calculated
-    f = open(xyz, 'a', encoding="utf-8")
+    f = open('list_sprints.txt', 'a', encoding="utf-8")
     
     # list of .xyz files that will be opened to run sprint()
     # function
