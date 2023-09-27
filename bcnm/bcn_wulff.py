@@ -106,7 +106,7 @@ if __name__ == "__main__":
     xyz = sys.argv[1]
     
     # list of sprint coordinates to be calculated
-    f = open('list_sprints.txt', 'a', encoding="utf-8")
+    f = open(xyz, 'a', encoding="utf-8")
     
     # list of .xyz files that will be opened to run sprint()
     # function
