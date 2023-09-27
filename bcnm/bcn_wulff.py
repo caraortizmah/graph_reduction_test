@@ -35,7 +35,9 @@ def sprint(xyz_file):
     try:
          atoms=read(xyz_file,format='xyz')
     except ValueError:
-         print (f'There should be an Error in {xyz_file}\n')
+         
+         err.write(f'There should be an Error in {xyz_file} file\n')
+         return []
 
     atoms.center(vacuum=20)
     adjacencyName=xyz_file+'dat'
@@ -112,6 +114,9 @@ if __name__ == "__main__":
     # list of sprint coordinates to be calculated
     f = open('list_sprints.txt', 'a', encoding="utf-8")
     
+    #  ...in case of errors...
+    err = open('err_listxyz.err', 'a', encoding="utf-8")
+
     # list of .xyz files that will be opened to run sprint()
     # function
     with open(xyz) as listmol:
@@ -121,3 +126,4 @@ if __name__ == "__main__":
             f.write(f'{line}, {sprint(line)}\n')
             
         f.close()
+    err.close()
